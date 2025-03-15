@@ -1,0 +1,115 @@
+#include <iostream>
+#include<process.h>
+using namespace std;
+
+class linked
+{
+    protected : struct node
+    {
+        int info;
+        struct node*link;
+    };
+    typedef struct node Node;
+    Node *start;
+    public:
+        void create();
+        void display();
+        void insert_beg();
+
+   linked()
+        {
+            start = NULL;
+        }
+};
+
+
+ void linked :: create()
+ {
+     int item;
+     Node *ptr;
+    if(start == NULL)
+        {
+            ptr = new Node;
+            cout<<"Enter a item : \t";
+            cin>>item;
+            ptr->info = item;
+            ptr->link = NULL;
+            start =ptr;
+        }
+        else
+        {
+            cout<<"List already Exist\n";
+        }
+ }
+
+void linked :: display()
+{
+    node *ptr;
+    if (start == NULL)
+        {
+            cout<<"List is Empty\n";
+        }
+        else
+        {
+            ptr = start;
+            while(ptr != NULL)
+            {
+                cout<<ptr->info<<"\t";
+                ptr=ptr->link;
+            }
+        }
+}
+
+void linked :: insert_beg()
+{
+  Node *ptr;
+  int item;
+  if(start == NULL)
+  {
+    ptr = new Node;
+    cout<<"Enter a item: ";
+    cin>>item;
+    ptr->info = item;
+    ptr->link = NULL;
+    start = ptr;
+  }
+  else
+  {
+    ptr= new Node;
+    cout<<"Enter a item: \t";
+    cin>>item;
+    ptr->info=item;
+    ptr->link=start;
+    start = ptr;
+  }
+}
+
+int main()
+{
+   linked l;
+   int ele,ch;
+
+   while(1)
+   {
+      cout<<"\nSingly LinkedList Operation for Insertion";
+      cout<<"\n1.Create\n 2.Display\n 3.Insert_beg\n 4.Insert_end\n 5Exit\n";
+      cout<<"Enter your choice: \t";
+      cin>>ch;
+      switch(ch)
+      {
+	case 1 :l.create();
+		break;
+
+	case 2 :l.display();
+		break;
+
+	case 3 :l.insert_beg();
+		break;
+case 4:exit(0);
+		return 0;
+
+	default : cout<<"Invalid Choice";
+		  break;
+      }
+   }
+}
